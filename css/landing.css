@@ -7,7 +7,7 @@
 html, body {
     /*padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     font-family: "comforta";
-      background-image: url("./../img/grid.png");
+      
 }
 
 .nav-margin
@@ -19,6 +19,17 @@ html, body {
 {
 	margin: 0;
 	padding: 0;
+}
+
+.whoiworkwith
+{
+	background: #262526;
+}
+
+.clients
+{
+	background: white;
+	margin: auto;
 }
 
 
@@ -79,6 +90,16 @@ h1
 {
 	font-size: 15pt;
 	letter-spacing: 10px;
+}
+
+h2
+{
+	font-size: 9pt;
+	letter-spacing: 10px;
+	text-align: center;
+	color: #FFFFFF;
+	font-family: "comforta";
+	padding-bottom: 3px;
 }
 
 h3

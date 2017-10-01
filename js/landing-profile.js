@@ -1,8 +1,13 @@
 var canvas = document.getElementById("myCanvas");
 var ctx    = canvas.getContext("2d");
+
+var strurl = new URL("file:///Volumes/Macintosh%20HD/Users/connerlacy/Documents/emergent.io/Repositories/connerlacy.com/img/profile_circle.png");
+
+var arches = [];
+var numArches = 20;
+reset();
+
 var frame = 0;
-var currentAttribute = "";
-var displayAttribute = "";
 var attrIndx = 0;
 var attributes = 
 [
@@ -14,45 +19,34 @@ var attributes =
 "leader",
 "learner"
 ];
+var displayAttribute = {text: "", x: canvas.width*0.2, y: canvas.height*0.2, color: "#262526"};
+getNewAttribute();
 var printCount = 0;
 
-console.log(getSample(0));
-
-var strurl = new URL("file:///Volumes/Macintosh%20HD/Users/connerlacy/Documents/emergent.io/website/connerlacy.com/img/profile_circle.png");
-
-var arches = [];
-var numArches = 20;
-for(var i =0; i < numArches; i++)
-{
-	var direction = Math.round(Math.random());
-	if(!direction) {direction = -1};
-
-	var start = Math.PI*2*Math.random();
-	var end   = start + (Math.PI/4);
-	arches.push({
-		angleBegin: start, 
-		angleEnd:   end, 
-		width:(Math.random()*220) + 10, 
-		color: getSample(Math.round(Math.random() * 576)), 
-		travel: direction});
-}
-
 var img    = new Image;
-img.onload = function(){
-  update();
-};
+img.onload = function(){update();};
 img.src    = strurl;
 
 setInterval(update, 50);
 
-function rgbString(r,g,b)
+function reset()
 {
-	r = Math.floor(r);
-	g = Math.floor(g);
-	b = Math.floor(b);
-	return "rgba(" + r + "," + g + ","  + b + ",1)";
+	arches = [];
+	for(var i =0; i < numArches; i++)
+	{
+		var direction = Math.round(Math.random());
+		if(!direction) {direction = -1};
+	
+		var start = Math.PI*2*Math.random();
+		var end   = start + (Math.PI/4);
+		arches.push({
+			angleBegin: start, 
+			angleEnd:   end, 
+			width:(Math.random()*220) + 10, 
+			color: getSample(Math.round(Math.random() * 576)), 
+			travel: direction});
+	}
 }
-
 
 function update()
 {
@@ -85,50 +79,53 @@ function update()
 	ctx.arc(center.x, center.y, radius, 0,Math.PI*2);
 	ctx.stroke();
 	
-	ctx.font = "small-caps 20pt comforta";
-	//ctx.textAlign = "center";
-	ctx.fillText(displayAttribute, 100, 100);
+	var fSize = size*0.07;
 	
+	ctx.font = "small-caps " + fSize.toString() + "pt comforta";
+	//ctx.textAlign = "center";
+	ctx.fillStyle = "#262526";//displayAttribute.color;
+	ctx.fillText(displayAttribute.text, displayAttribute.x, displayAttribute.y);
 	
 	printNextAttriChar();
 	
-	frame++;
+	ctx.beginPath();
+	ctx.moveTo(displayAttribute.x,displayAttribute.y + fSize);
+	ctx.lineTo(displayAttribute.x + ctx.measureText(displayAttribute.text).width,displayAttribute.y + fSize);
+	ctx.strokeStyle = displayAttribute.color; //arches[Math.floor(Math.random()*numArches)].color;
+	ctx.stroke();
 	
-	console.log(displayAttribute);
+	console.log(displayAttribute.color);
 	
+	frame++;	
 }
 
 function printNextAttriChar(f)
 {
-	if(displayAttribute.length < currentAttribute.length)
+	if(displayAttribute.text.length < currentAttribute.length)
 	{
-		displayAttribute = displayAttribute.concat(currentAttribute[displayAttribute.length]);
+		displayAttribute.text = displayAttribute.text.concat(currentAttribute[displayAttribute.text.length]);
 		printCount = 0;
 	}
 	else
 	{
 		if(printCount >= 20)
 		{
-			displayAttribute = "";
-			attrIndx++;
-			
-			if(attrIndx == attributes.length){attrIndx = 0;}
-			
-			currentAttribute = getAttribute(attrIndx);
+			getNewAttribute();
 		}
 	}
 	
 	printCount++;
 }
 
-function getAttribute(i)
+function getNewAttribute()
 {
-	if(i < attributes.length)
-	{
-		return attributes[i];
-	}
+	displayAttribute.text = "";
+	displayAttribute.color = arches[Math.round(Math.random()*numArches)].color;
+	attrIndx++;
 	
-	return "";
+	if(attrIndx == attributes.length){attrIndx = 0; reset(); }
+	
+	currentAttribute = attributes[attrIndx];
 }
 
 function getSample(i)
