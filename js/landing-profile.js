@@ -94,7 +94,7 @@ function update()
 	ctx.strokeStyle = displayAttribute.color; //arches[Math.floor(Math.random()*numArches)].color;
 	ctx.stroke();
 	
-	console.log(displayAttribute.color);
+	//console.log(displayAttribute.color);
 	
 	frame++;	
 }
@@ -120,7 +120,7 @@ function printNextAttriChar(f)
 function getNewAttribute()
 {
 	displayAttribute.text = "";
-	displayAttribute.color = arches[Math.round(Math.random()*numArches)].color;
+	displayAttribute.color = arches[Math.round(Math.random()*(numArches - 1))].color;
 	attrIndx++;
 	
 	if(attrIndx == attributes.length){attrIndx = 0; reset(); }
