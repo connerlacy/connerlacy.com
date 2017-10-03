@@ -11,15 +11,24 @@ var frame = 0;
 var attrIndx = 0;
 var attributes = 
 [
-"dad", 
-"creative technologist",
-"software developer",
-"designer",
-"polymath",
-"leader",
-"learner"
+"creative technology",
+"software development",
+"design",
+"ui/ux",
+"interactivity",
+"installation",
+"synthesis",
+"sensor processing",
+"interfacing",
+"mobile apps",
+"cross-platform",
+"GPU",
+"generative code",
+"music systems",
+"sound design",
+"team leadership"
 ];
-var displayAttribute = {text: "", x: canvas.width*0.2, y: canvas.height*0.2, color: "#262526"};
+var displayAttribute = {text: "", x: canvas.width*0.25, y: canvas.height*0.333, color: "#262526"};
 getNewAttribute();
 var printCount = 0;
 
@@ -79,7 +88,7 @@ function update()
 	ctx.arc(center.x, center.y, radius, 0,Math.PI*2);
 	ctx.stroke();
 	
-	var fSize = size*0.07;
+	var fSize = size*0.06;
 	
 	ctx.font = "small-caps " + fSize.toString() + "pt comforta";
 	//ctx.textAlign = "center";
