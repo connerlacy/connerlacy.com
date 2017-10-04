@@ -1,7 +1,7 @@
 var canvas = document.getElementById("myCanvas");
 var ctx    = canvas.getContext("2d");
 
-var strurl = new URL("file:///Volumes/Macintosh%20HD/Users/connerlacy/Documents/emergent.io/Repositories/connerlacy.com/img/profile_circle.png");
+var strurl = new URL("http://www.connerlacy.com/img/profile_circle.png");
 
 var arches = [];
 var numArches = 20;
@@ -22,13 +22,13 @@ var attributes =
 "interfacing",
 "mobile apps",
 "cross-platform",
-"GPU",
+"gpu",
 "generative code",
 "music systems",
 "sound design",
 "team leadership"
 ];
-var displayAttribute = {text: "", x: canvas.width*0.25, y: canvas.height*0.333, color: "#262526"};
+var displayAttribute = {text: "", x: canvas.width*0.1, y: canvas.height*0.45, color: "#262526"};
 getNewAttribute();
 var printCount = 0;
 
@@ -88,18 +88,18 @@ function update()
 	ctx.arc(center.x, center.y, radius, 0,Math.PI*2);
 	ctx.stroke();
 	
-	var fSize = size*0.06;
+	var fSize = canvas.height*0.04;
 	
 	ctx.font = "small-caps " + fSize.toString() + "pt comforta";
 	//ctx.textAlign = "center";
 	ctx.fillStyle = "#262526";//displayAttribute.color;
-	ctx.fillText(displayAttribute.text, displayAttribute.x, displayAttribute.y);
+	ctx.fillText(displayAttribute.text, displayAttribute.x, center.y);
 	
 	printNextAttriChar();
 	
 	ctx.beginPath();
-	ctx.moveTo(displayAttribute.x,displayAttribute.y + fSize);
-	ctx.lineTo(displayAttribute.x + ctx.measureText(displayAttribute.text).width,displayAttribute.y + fSize);
+	ctx.moveTo(displayAttribute.x,center.y + fSize);
+	ctx.lineTo(displayAttribute.x + ctx.measureText(displayAttribute.text).width,center.y + fSize);
 	ctx.strokeStyle = displayAttribute.color; //arches[Math.floor(Math.random()*numArches)].color;
 	ctx.stroke();
 	
