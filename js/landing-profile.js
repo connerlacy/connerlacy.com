@@ -28,7 +28,7 @@ var attributes =
 "sound design",
 "team leadership"
 ];
-var displayAttribute = {text: "", x: canvas.width*0.1, y: canvas.height*0.45, color: "#262526"};
+var displayAttribute = {text: "", x: canvas.width*0.1, y: canvas.height*0.2, color: "#262526"};
 getNewAttribute();
 var printCount = 0;
 
@@ -93,13 +93,13 @@ function update()
 	ctx.font = "small-caps " + fSize.toString() + "pt comforta";
 	//ctx.textAlign = "center";
 	ctx.fillStyle = "#262526";//displayAttribute.color;
-	ctx.fillText(displayAttribute.text, displayAttribute.x, center.y);
+	ctx.fillText(displayAttribute.text, canvas.width*0.07, canvas.height*0.07);
 	
 	printNextAttriChar();
 	
 	ctx.beginPath();
-	ctx.moveTo(displayAttribute.x,center.y + fSize);
-	ctx.lineTo(displayAttribute.x + ctx.measureText(displayAttribute.text).width,center.y + fSize);
+	ctx.moveTo(canvas.width*0.07,canvas.height*0.07 + fSize);
+	ctx.lineTo(canvas.width*0.07 + ctx.measureText(displayAttribute.text).width,canvas.height*0.07 + fSize);
 	ctx.strokeStyle = displayAttribute.color; //arches[Math.floor(Math.random()*numArches)].color;
 	ctx.stroke();
 	
