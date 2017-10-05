@@ -15,17 +15,13 @@ var attributes =
 "software development",
 "design",
 "ui/ux",
+"algorithm development",
 "interactivity",
-"installation",
-"synthesis",
 "sensor processing",
-"interfacing",
-"mobile apps",
-"cross-platform",
-"gpu",
-"generative code",
+"mobile development",
+"multi-platform",
+"generative art",
 "music systems",
-"sound design",
 "team leadership"
 ];
 var displayAttribute = {text: "", x: canvas.width*0.1, y: canvas.height*0.2, color: "#262526"};
